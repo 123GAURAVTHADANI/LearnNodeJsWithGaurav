@@ -1,4 +1,5 @@
 const User = require("../Model/user.schema");
+const jwt = require("jsonwebtoken");
 
 function deleteUser(req, res) {
   try {
@@ -60,4 +61,22 @@ function createUser(req, res) {
     res.json({ Message: "User failed to create", error: err }).status(500);
   }
 }
-module.exports = { getUser, createUser, getUserById, deleteUser };
+async function loginUser(req, res) {
+  let { email, password } = req.body;
+  if (!email || !password) {
+    res.json({ Message: "Email & password is required", status: 500 });
+  }
+
+  const user = await User.findOne({ email });
+  console.log(">>user", user);
+  if (!user) {
+    res.json({ Message: "User does not exists!!", status: 500 });
+  }
+  if (!(user && (await user.comparePassword(password)))) {
+    res.json({ Message: "Email or Password do not match!" });
+  }
+  const token = await user.generateJWTToken();
+  console.log(token);
+}
+
+module.exports = { getUser, createUser, getUserById, deleteUser, loginUser };

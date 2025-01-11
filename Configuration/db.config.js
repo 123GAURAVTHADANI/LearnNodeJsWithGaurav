@@ -4,7 +4,7 @@ let mongoose = require("mongoose");
 function dbConfig() {
   mongoose
     .connect(
-      "mongodb+srv://garvthad:gaurav@cluster0.yl7bq.mongodb.net/FSDBlog?retryWrites=true&w=majority&appName=Cluster0",
+      "mongodb+srv://garvthad:123Gaurav@cluster0.yl7bq.mongodb.net/FSDBlog?retryWrites=true&w=majority&appName=Cluster0",
       { useNewUrlParser: true }
     )
     .then(() => {
