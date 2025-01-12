@@ -17,7 +17,7 @@ const consoleDate = (req, res, next) => {
   next();
 };
 
-console.log("Hi");
+console.log("Hello");
 
 // const checkError = (req, res, next) => {
 //   const error = new Error("Not Found");
